@@ -22,5 +22,4 @@ ENV PATH=/usr/local/doxygen/doxygen-1.8.16/bin:$PATH
 RUN pip3 install \
     sphinx==2.3.1 \
     breathe==4.14.0 \
-    sphinx_rtd_theme==0.4.3 \
     sphinxcontrib-plantuml==0.18
