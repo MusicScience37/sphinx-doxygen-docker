@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+
+UseTab: Never
+IndentWidth: 4
+AccessModifierOffset: -4
+NamespaceIndentation: All
+IndentCaseLabels: false
+
+FixNamespaceComments: true
+
+AlignAfterOpenBracket: DontAlign
+AlignOperands: false
