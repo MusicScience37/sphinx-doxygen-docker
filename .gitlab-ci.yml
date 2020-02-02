@@ -1,0 +1,47 @@
+stages:
+  - build
+  - publish
+
+.build-base:
+  image: tmaier/docker-compose:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+    - docker-compose --version
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$IMAGE_NAME" sphinx-doxygen
+    - sh run_test.sh
+    - docker push "$IMAGE_NAME"
+  artifacts:
+    paths:
+      - test/build
+    expire_in: '30 days'
+
+build:
+  extends: .build-base
+  variables:
+    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    - master
+
+build master:
+  extends: .build-base
+  variables:
+    IMAGE_NAME: "$CI_REGISTRY_IMAGE"
+  only:
+    - master
+
+pages:
+  only:
+    - master
+  stage: publish
+  image: ubuntu:eoan
+  script:
+    - cp -r test/build/sphinx/html public
+  artifacts:
+    paths:
+      - public
+    expire_in: '6 mos'
