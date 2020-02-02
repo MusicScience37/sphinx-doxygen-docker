@@ -35,6 +35,8 @@ build master:
     - master
 
 pages:
+  only:
+    - master
   stage: publish
   image: ubuntu:eoan
   script:
