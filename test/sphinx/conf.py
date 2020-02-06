@@ -22,7 +22,7 @@ copyright = '2020, MusicScience37 (Kenta Kabashima)'
 author = 'Kenta Kabashima'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = '1.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -54,6 +54,31 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 #html_static_path = ['_static']
 
+# -- Options for Latex output ------------------------------------------------
+
+latex_documents = [(
+    # start doc name
+    'index',
+    # target name
+    'sphinx-doxygen-docker.tex',
+    # title
+    'Sphinx-Doxygen Docker Image',
+    # author
+    'Kenta Kabashima',
+    # document class
+    'manual',
+    # toc tree only
+    False,
+)]
+
+latex_elements = {
+    'fontpkg' : r'''
+    \usepackage{lmodern}
+    ''',
+}
+
+# ---Extensions --------------------------------------------------------------
+
 extensions += ['sphinx.ext.mathjax']
 mathjax_config = {
     'TeX' : {
@@ -65,6 +90,7 @@ mathjax_config = {
 
 extensions += ['sphinxcontrib.plantuml']
 plantuml_output_format = 'svg'
+plantuml_latex_output_format = 'pdf'
 plantuml_syntax_error_image = True
 
 extensions += ['breathe']
