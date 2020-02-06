@@ -23,3 +23,19 @@ RUN pip3 install \
     sphinx==2.3.1 \
     breathe==4.14.0 \
     sphinxcontrib-plantuml==0.18
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        texlive=2019.20190710-1 \
+        texlive-latex-recommended=2019.20190710-1 \
+        texlive-fonts-recommended=2019.20190710-1 \
+        texlive-font-utils=2019.20190710-1 \
+        texlive-latex-extra=2019.20190710-1 \
+        lmodern=2.004.5-6 \
+        ghostscript=9.27~dfsg+0-0ubuntu3.1 \
+        latexmk=1:4.65-0.2 && \
+    apt-get autoremove && \
+    apt-get autoclean && \
+    rm -r /var/lib/apt/lists/*
+
+WORKDIR /root
