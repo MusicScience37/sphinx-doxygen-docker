@@ -22,7 +22,7 @@ copyright = '2020, MusicScience37 (Kenta Kabashima)'
 author = 'Kenta Kabashima'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = '1.1'
 
 
 # -- General configuration ---------------------------------------------------
