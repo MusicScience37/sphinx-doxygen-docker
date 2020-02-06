@@ -17,6 +17,7 @@ The container image in this project contains the following tools:
 - Sphinx
 - Breathe
 - PlantUML (path is set to an environment variable `PLANTUML_JAR_PATH`)
+- TexLive
 
 Test page is [here](https://musicscience37_ci.gitlab.io/sphinx-doxygen-docker/).
 
