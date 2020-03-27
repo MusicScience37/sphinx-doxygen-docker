@@ -20,8 +20,8 @@ RUN wget -nv http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz && \
 ENV PATH=/usr/local/doxygen/doxygen-1.8.16/bin:$PATH
 
 RUN pip3 install \
-    sphinx==2.3.1 \
-    breathe==4.14.0 \
+    sphinx==2.4.4 \
+    breathe==4.14.1 \
     sphinxcontrib-plantuml==0.18
 
 RUN apt-get update && \
