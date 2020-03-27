@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v1-0
+FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v1-1
 
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.0.jar/download \
+    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.5.jar/download \
         -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
@@ -20,8 +20,8 @@ RUN wget -nv http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz && \
 ENV PATH=/usr/local/doxygen/doxygen-1.8.16/bin:$PATH
 
 RUN pip3 install \
-    sphinx==2.3.1 \
-    breathe==4.14.0 \
+    sphinx==2.4.4 \
+    breathe==4.14.1 \
     sphinxcontrib-plantuml==0.18
 
 RUN apt-get update && \
