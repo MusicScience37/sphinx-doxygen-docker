@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v1-0
+FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v1-1
 
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
