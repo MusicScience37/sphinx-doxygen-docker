@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.0.jar/download \
+    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.5.jar/download \
         -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
