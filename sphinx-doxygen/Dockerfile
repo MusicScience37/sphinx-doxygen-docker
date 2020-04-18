@@ -14,10 +14,10 @@ RUN apt-get update && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
 WORKDIR /usr/local/doxygen
-RUN wget -nv http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz && \
-    tar xf doxygen-1.8.16.linux.bin.tar.gz && \
-    rm doxygen-1.8.16.linux.bin.tar.gz
-ENV PATH=/usr/local/doxygen/doxygen-1.8.16/bin:$PATH
+RUN wget -nv http://doxygen.nl/files/doxygen-1.8.18.linux.bin.tar.gz && \
+    tar xf doxygen-1.8.18.linux.bin.tar.gz && \
+    rm doxygen-1.8.18.linux.bin.tar.gz
+ENV PATH=/usr/local/doxygen/doxygen-1.8.18/bin:$PATH
 
 RUN pip3 install \
     sphinx==2.4.4 \
