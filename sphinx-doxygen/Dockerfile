@@ -14,6 +14,12 @@ RUN apt-get update && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
 WORKDIR /usr/local/doxygen
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        libtinfo5=6.1+20190803-1ubuntu1 && \
+    apt-get autoremove && \
+    apt-get autoclean && \
+    rm -r /var/lib/apt/lists/*
 RUN wget -nv http://doxygen.nl/files/doxygen-1.8.18.linux.bin.tar.gz && \
     tar xf doxygen-1.8.18.linux.bin.tar.gz && \
     rm doxygen-1.8.18.linux.bin.tar.gz
