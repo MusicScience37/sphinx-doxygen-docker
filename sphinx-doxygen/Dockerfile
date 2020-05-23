@@ -1,22 +1,22 @@
-FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v1-1
+FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v2-0
 
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         default-jre=2:1.11-72 \
-        graphviz=2.40.1-7build1 && \
+        graphviz=2.42.2-3build2 && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.5.jar/download \
+    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.10.jar/download \
         -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
 WORKDIR /usr/local/doxygen
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        libtinfo5=6.1+20190803-1ubuntu1 && \
+        libtinfo5=6.2-0ubuntu2 && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/*
@@ -26,20 +26,20 @@ RUN wget -nv http://doxygen.nl/files/doxygen-1.8.18.linux.bin.tar.gz && \
 ENV PATH=/usr/local/doxygen/doxygen-1.8.18/bin:$PATH
 
 RUN pip3 install \
-    sphinx==2.4.4 \
-    breathe==4.14.1 \
+    sphinx==3.0.3 \
+    breathe==4.18.1 \
     sphinxcontrib-plantuml==0.18
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        texlive=2019.20190710-1 \
-        texlive-latex-recommended=2019.20190710-1 \
-        texlive-fonts-recommended=2019.20190710-1 \
-        texlive-font-utils=2019.20190710-1 \
-        texlive-latex-extra=2019.20190710-1 \
+        texlive=2019.20200218-1 \
+        texlive-latex-recommended=2019.20200218-1 \
+        texlive-fonts-recommended=2019.20200218-1 \
+        texlive-font-utils=2019.202000218-1 \
+        texlive-latex-extra=2019.202000218-1 \
         lmodern=2.004.5-6 \
-        ghostscript=9.27~dfsg+0-0ubuntu3.1 \
-        latexmk=1:4.65-0.2 && \
+        ghostscript=9.50~dfsg-5ubuntu4 \
+        latexmk=1:4.67-0.1 && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/*
