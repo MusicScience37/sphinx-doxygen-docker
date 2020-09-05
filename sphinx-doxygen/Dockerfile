@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v2-0
+FROM registry.gitlab.com/musicscience37_ci/clang-ci-docker:clang9-v2-1
 
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.10.jar/download \
+    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.16.jar/download \
         -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
@@ -20,14 +20,14 @@ RUN apt-get update && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/*
-RUN wget -nv http://doxygen.nl/files/doxygen-1.8.18.linux.bin.tar.gz && \
-    tar xf doxygen-1.8.18.linux.bin.tar.gz && \
-    rm doxygen-1.8.18.linux.bin.tar.gz
-ENV PATH=/usr/local/doxygen/doxygen-1.8.18/bin:$PATH
+RUN wget -nv http://doxygen.nl/files/doxygen-1.8.20.linux.bin.tar.gz && \
+    tar xf doxygen-1.8.20.linux.bin.tar.gz && \
+    rm doxygen-1.8.20.linux.bin.tar.gz
+ENV PATH=/usr/local/doxygen/doxygen-1.8.20/bin:$PATH
 
 RUN pip3 install \
-    sphinx==3.0.3 \
-    breathe==4.18.1 \
+    sphinx==3.2.1 \
+    breathe==4.20.0 \
     sphinxcontrib-plantuml==0.18
 
 RUN apt-get update && \
@@ -38,7 +38,7 @@ RUN apt-get update && \
         texlive-font-utils=2019.202000218-1 \
         texlive-latex-extra=2019.202000218-1 \
         lmodern=2.004.5-6 \
-        ghostscript=9.50~dfsg-5ubuntu4 \
+        ghostscript=9.50~dfsg-5ubuntu4.2 \
         latexmk=1:4.67-0.1 && \
     apt-get autoremove && \
     apt-get autoclean && \
