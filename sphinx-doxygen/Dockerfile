@@ -41,7 +41,8 @@ RUN apt-get update && \
     texlive-latex-extra=2019.202000218-1 \
     lmodern=2.004.5-6 \
     ghostscript=9.50~dfsg-5ubuntu4.2 \
-    latexmk=1:4.67-0.1 && \
+    latexmk=1:4.67-0.1 \
+    fonts-ipafont=00303-18ubuntu1 && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/*
