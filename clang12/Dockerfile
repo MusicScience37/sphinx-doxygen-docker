@@ -1,4 +1,4 @@
-FROM musicscience37/clang-ci:clang12-v3.4
+FROM musicscience37/clang-ci:clang12-v4.0
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
@@ -10,29 +10,21 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2021.16.jar/download \
+    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2022.1.jar/download \
     -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
 #Doxygen
 WORKDIR /usr/local/doxygen
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    libtinfo5=6.2-0ubuntu2 \
-    libclang1-9=1:9.0.1-12 \
-    libclang-cpp9=1:9.0.1-12 && \
-    apt-get autoremove && \
-    apt-get autoclean && \
-    rm -r /var/lib/apt/lists/* && \
-    wget -nv http://doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz && \
+RUN wget -nv http://doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz && \
     tar xf doxygen-1.9.3.linux.bin.tar.gz && \
     rm doxygen-1.9.3.linux.bin.tar.gz
 ENV PATH=/usr/local/doxygen/doxygen-1.9.3/bin:$PATH
 
 # Sphinx
 RUN pip3 install --no-cache-dir \
-    sphinx==4.3.2 \
-    breathe==4.31.0 \
+    sphinx==4.4.0 \
+    breathe==4.32.0 \
     sphinxcontrib-plantuml==0.22 && \
     # Tex
     apt-get update && \
@@ -43,7 +35,7 @@ RUN pip3 install --no-cache-dir \
     texlive-font-utils=2019.202000218-1 \
     texlive-latex-extra=2019.202000218-1 \
     lmodern=2.004.5-6 \
-    ghostscript=9.50~dfsg-5ubuntu4.4 \
+    ghostscript=9.50~dfsg-5ubuntu4.5 \
     latexmk=1:4.67-0.1 \
     fonts-ipafont=00303-18ubuntu1 && \
     apt-get autoremove && \
