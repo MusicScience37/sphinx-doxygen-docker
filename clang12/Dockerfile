@@ -1,4 +1,4 @@
-FROM musicscience37/clang-ci:clang12-v4.0
+FROM musicscience37/clang-ci:clang12-v4.1
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"

@@ -1,11 +1,11 @@
-FROM musicscience37/clang-ci:clang13-v4.0
+FROM musicscience37/clang-ci:clang13-v4.1
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    default-jre=2:1.11-72build1 \
-    graphviz=2.42.2-5build1 && \
+    default-jre=2:1.11-72 \
+    graphviz=2.42.2-3build2 && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
@@ -29,15 +29,15 @@ RUN pip3 install --no-cache-dir \
     # Tex
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    texlive=2021.20220204-1 \
-    texlive-latex-recommended=2021.20220204-1 \
-    texlive-fonts-recommended=2021.20220204-1 \
-    texlive-font-utils=2021.20211217-1 \
-    texlive-latex-extra=2021.20211217-1 \
-    lmodern=2.004.5-6.1 \
-    ghostscript=9.55.0~dfsg1-0ubuntu4 \
-    latexmk=1:4.76-1 \
-    fonts-ipafont=00303-21ubuntu1 && \
+    texlive=2019.20200218-1 \
+    texlive-latex-recommended=2019.20200218-1 \
+    texlive-fonts-recommended=2019.20200218-1 \
+    texlive-font-utils=2019.202000218-1 \
+    texlive-latex-extra=2019.202000218-1 \
+    lmodern=2.004.5-6 \
+    ghostscript=9.50~dfsg-5ubuntu4.5 \
+    latexmk=1:4.67-0.1 \
+    fonts-ipafont=00303-18ubuntu1 && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/*
