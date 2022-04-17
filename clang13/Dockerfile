@@ -1,4 +1,4 @@
-FROM musicscience37/clang-ci:clang13-v4.2
+FROM musicscience37/clang-ci:clang13-v4.3
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2022.2.jar/download \
+    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2022.4.jar/download \
     -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
