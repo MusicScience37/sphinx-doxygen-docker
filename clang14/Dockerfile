@@ -1,4 +1,4 @@
-FROM musicscience37/clang-ci:clang14-v4.3
+FROM musicscience37/clang-ci:clang14-v5.0
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
@@ -10,16 +10,16 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv http://sourceforge.net/projects/plantuml/files/plantuml.1.2022.4.jar/download \
+    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2022.5/plantuml-1.2022.5.jar \
     -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
 #Doxygen
 WORKDIR /usr/local/doxygen
-RUN wget -nv http://doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz && \
-    tar xf doxygen-1.9.3.linux.bin.tar.gz && \
-    rm doxygen-1.9.3.linux.bin.tar.gz
-ENV PATH=/usr/local/doxygen/doxygen-1.9.3/bin:$PATH
+RUN wget -nv http://doxygen.nl/files/doxygen-1.9.4.linux.bin.tar.gz && \
+    tar xf doxygen-1.9.4.linux.bin.tar.gz && \
+    rm doxygen-1.9.4.linux.bin.tar.gz
+ENV PATH=/usr/local/doxygen/doxygen-1.9.4/bin:$PATH
 
 # Sphinx
 RUN pip3 install --no-cache-dir \
