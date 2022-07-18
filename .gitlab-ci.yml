@@ -11,11 +11,9 @@ container_scanning:
     - if: $CI_COMMIT_BRANCH &&
         $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   needs:
-    - "update clang11"
     - "update clang12"
     - "update clang13"
     - "update clang14"
-    - "update clang15"
 
 .test-base:
   image: docker:latest
@@ -38,16 +36,6 @@ container_scanning:
   except: []
   only:
     - main
-
-test clang11:
-  extends: .test-base
-  variables:
-    IMAGE_DIR: clang11
-
-update clang11:
-  extends: .update-base
-  variables:
-    IMAGE_DIR: clang11
 
 test clang12:
   extends: .test-base
@@ -78,13 +66,3 @@ update clang14:
   extends: .update-base
   variables:
     IMAGE_DIR: clang14
-
-test clang15:
-  extends: .test-base
-  variables:
-    IMAGE_DIR: clang15
-
-update clang15:
-  extends: .update-base
-  variables:
-    IMAGE_DIR: clang15
