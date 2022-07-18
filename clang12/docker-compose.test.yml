@@ -1,5 +1,0 @@
-sut:
-  build: .
-  volumes:
-    - ../test:/home/test
-  command: /home/test/run_test.sh
