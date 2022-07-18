@@ -34,8 +34,8 @@ import click
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 
-GITLAB_IMAGE_URL = "registry.gitlab.com/musicscience37/clang-ci-docker"
-DOCKER_HUB_IMAGE_URL = "musicscience37/clang-ci"
+GITLAB_IMAGE_URL = "registry.gitlab.com/musicscience37/sphinx-doxygen-docker"
+DOCKER_HUB_IMAGE_URL = "musicscience37/sphinx-doxygen"
 
 IMAGE_TAGS = ["clang12", "clang13", "clang14"]
 LATEST_IMAGE_TAG = IMAGE_TAGS[2]
