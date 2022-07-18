@@ -1,16 +1,16 @@
-FROM musicscience37/clang-ci:clang12-v5.0
+FROM musicscience37/clang-ci:clang12
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    default-jre=2:1.11-72 \
-    graphviz=2.42.2-3build2 && \
+    default-jre \
+    graphviz && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2022.5/plantuml-1.2022.5.jar \
+    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2022.6/plantuml-1.2022.6.jar \
     -O ${PLANTUML_JAR_PATH} && \
     java -jar ${PLANTUML_JAR_PATH} -version
 
@@ -23,21 +23,22 @@ ENV PATH=/usr/local/doxygen/doxygen-1.9.4/bin:$PATH
 
 # Sphinx
 RUN pip3 install --no-cache-dir \
-    sphinx==4.5.0 \
-    breathe==4.33.1 \
-    sphinxcontrib-plantuml==0.23 && \
+    sphinx \
+    breathe \
+    sphinxcontrib-plantuml && \
     # Tex
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    texlive=2019.20200218-1 \
-    texlive-latex-recommended=2019.20200218-1 \
-    texlive-fonts-recommended=2019.20200218-1 \
-    texlive-font-utils=2019.202000218-1 \
-    texlive-latex-extra=2019.202000218-1 \
-    lmodern=2.004.5-6 \
-    ghostscript=9.50~dfsg-5ubuntu4.5 \
-    latexmk=1:4.67-0.1 \
-    fonts-ipafont=00303-18ubuntu1 && \
+    texlive \
+    texlive-latex-recommended \
+    texlive-fonts-recommended \
+    texlive-font-utils \
+    texlive-latex-extra \
+    lmodern \
+    ghostscript \
+    latexmk \
+    fonts-ipafont \
+    && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/*

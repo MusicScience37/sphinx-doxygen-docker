@@ -1,115 +1,90 @@
 stages:
   - build
-  - publish
+  - test
 
-variables:
-  HUB_REPO_NAME: musicscience37/sphinx-doxygen
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+container_scanning:
+  variables:
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE
+  rules:
+    - if: $CI_COMMIT_BRANCH &&
+        $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  needs:
+    - "update clang11"
+    - "update clang12"
+    - "update clang13"
+    - "update clang14"
+    - "update clang15"
 
-.build-base:
-  image: tmaier/docker-compose:latest
+.test-base:
+  image: docker:latest
   stage: build
   services:
     - docker:dind
   before_script:
-    - docker info
-    - docker-compose --version
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - apk add python3 py3-pip
+    - pip3 install click
   script:
-    - docker build --pull -t "$IMAGE_NAME" "$IMAGE_DIR"
-    - sh run_test.sh "$IMAGE_DIR"
-    - docker push "$IMAGE_NAME"
-  artifacts:
-    paths:
-      - test/build
-    expire_in: "30 days"
-
-.build-hub-base:
-  extends: .build-base
-  after_script:
-    - docker login -u "$HUB_USER_NAME" -p "$HUB_ACCESS_TOKEN"
-    - docker tag "$IMAGE_NAME" "$HUB_IMAGE_NAME"
-    - docker push "$HUB_IMAGE_NAME"
-
-build clang12:
-  extends: .build-base
-  variables:
-    IMAGE_DIR: clang12
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$IMAGE_DIR-$CI_COMMIT_REF_SLUG"
+    - apk add python3 py3-pip
+    - python3 ./tool.py test $IMAGE_DIR
   except:
-    - master
-    - tags
+    - main
 
-build tag clang12:
-  extends: .build-hub-base
+.update-base:
+  extends: .test-base
+  script:
+    - python3 ./tool.py update $IMAGE_DIR
+  except: []
+  only:
+    - main
+
+test clang11:
+  extends: .test-base
+  variables:
+    IMAGE_DIR: clang11
+
+update clang11:
+  extends: .update-base
+  variables:
+    IMAGE_DIR: clang11
+
+test clang12:
+  extends: .test-base
   variables:
     IMAGE_DIR: clang12
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$IMAGE_DIR-$CI_COMMIT_TAG"
-    HUB_IMAGE_NAME: "$HUB_REPO_NAME:$IMAGE_DIR-$CI_COMMIT_TAG"
-  only:
-    - tags
 
-build clang13:
-  extends: .build-base
+update clang12:
+  extends: .update-base
+  variables:
+    IMAGE_DIR: clang12
+
+test clang13:
+  extends: .test-base
   variables:
     IMAGE_DIR: clang13
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$IMAGE_DIR-$CI_COMMIT_REF_SLUG"
-  except:
-    - master
-    - tags
 
-build tag clang13:
-  extends: .build-hub-base
+update clang13:
+  extends: .update-base
   variables:
     IMAGE_DIR: clang13
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$IMAGE_DIR-$CI_COMMIT_TAG"
-    HUB_IMAGE_NAME: "$HUB_REPO_NAME:$IMAGE_DIR-$CI_COMMIT_TAG"
-  only:
-    - tags
 
-build clang14:
-  extends: .build-base
+test clang14:
+  extends: .test-base
   variables:
     IMAGE_DIR: clang14
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$IMAGE_DIR-$CI_COMMIT_REF_SLUG"
-  except:
-    - master
-    - tags
 
-build tag clang14:
-  extends: .build-hub-base
+update clang14:
+  extends: .update-base
   variables:
     IMAGE_DIR: clang14
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$IMAGE_DIR-$CI_COMMIT_TAG"
-    HUB_IMAGE_NAME: "$HUB_REPO_NAME:$IMAGE_DIR-$CI_COMMIT_TAG"
-  only:
-    - tags
 
-build tag:
-  extends: .build-hub-base
+test clang15:
+  extends: .test-base
   variables:
-    IMAGE_DIR: clang12
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
-    HUB_IMAGE_NAME: "$HUB_REPO_NAME:$CI_COMMIT_TAG"
-  only:
-    - tags
+    IMAGE_DIR: clang15
 
-build master:
-  extends: .build-hub-base
+update clang15:
+  extends: .update-base
   variables:
-    IMAGE_DIR: clang12
-    IMAGE_NAME: "$CI_REGISTRY_IMAGE:latest"
-    HUB_IMAGE_NAME: "$HUB_REPO_NAME:latest"
-  only:
-    - master
-
-pages:
-  only:
-    - master
-  stage: publish
-  image: ubuntu
-  script:
-    - cp -r test/build/sphinx/html public
-  artifacts:
-    paths:
-      - public
-    expire_in: "6 mos"
+    IMAGE_DIR: clang15

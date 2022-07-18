@@ -2,9 +2,7 @@
 
 [![dockeri.co](https://dockeri.co/image/musicscience37/sphinx-doxygen)](https://hub.docker.com/r/musicscience37/sphinx-doxygen)
 
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/MusicScience37/sphinx-doxygen-docker?label=latest)
-
-[![pipeline status](https://gitlab.com/musicscience37/sphinx-doxygen-docker/badges/develop/pipeline.svg)](https://gitlab.com/musicscience37/sphinx-doxygen-docker/commits/develop)
+[![pipeline status](https://gitlab.com/MusicScience37/sphinx-doxygen-docker/badges/main/pipeline.svg)](https://gitlab.com/MusicScience37/sphinx-doxygen-docker/-/commits/main)
 
 Docker container image to build documentations using Sphinx and Doxygen supported by Breathe.
 
@@ -34,7 +32,7 @@ You can pull automatically built images from following registries:
 - [GitHub](https://github.com/MusicScience37/sphinx-docker):
   mirror repository
 
-## Test
+## Testing
 
-To run a test of this project, execute the `run_test.sh` script.
-It requires docker and docker-compose commands installed.
+For test of this project,
+use `./tool.py test` command.

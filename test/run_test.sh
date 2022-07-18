@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+set -e
+
 pip3 install sphinx_rtd_theme==1.0.0
 
 cd $(dirname $0)
