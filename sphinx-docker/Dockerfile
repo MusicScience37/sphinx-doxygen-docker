@@ -1,4 +1,5 @@
-FROM musicscience37/clang-ci:clang13
+ARG BASE_TAG
+FROM musicscience37/clang-ci:${BASE_TAG}
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
