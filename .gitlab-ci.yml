@@ -66,3 +66,15 @@ update clang14:
   extends: .update-base
   variables:
     IMAGE_DIR: clang14
+
+test clang15:
+  extends: .test-base
+  variables:
+    IMAGE_DIR: clang15
+  allow_failure: true
+
+update clang15:
+  extends: .update-base
+  variables:
+    IMAGE_DIR: clang15
+  allow_failure: true

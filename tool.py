@@ -37,7 +37,7 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 GITLAB_IMAGE_URL = "registry.gitlab.com/musicscience37/sphinx-doxygen-docker"
 DOCKER_HUB_IMAGE_URL = "musicscience37/sphinx-doxygen"
 
-IMAGE_TAGS = ["clang12", "clang13", "clang14"]
+IMAGE_TAGS = ["clang12", "clang13", "clang14", "clang15"]
 LATEST_IMAGE_TAG = IMAGE_TAGS[2]
 
 DOCKERFILE_DIR_NAME = "sphinx-docker"
@@ -159,10 +159,6 @@ def _upload(tag_name: str, image_full_name: str):
     _tag_and_upload(
         image_full_name=image_full_name,
         another_image_full_name=f"{DOCKER_HUB_IMAGE_URL}:{tag_name}",
-    )
-    _tag_and_upload(
-        image_full_name=image_full_name,
-        another_image_full_name=f"{DOCKER_HUB_IMAGE_URL}:{tag_name}-{_create_time_stamp()}",
     )
     if tag_name == LATEST_IMAGE_TAG:
         _tag_and_upload(
