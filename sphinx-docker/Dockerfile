@@ -6,14 +6,15 @@ ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     default-jre \
-    graphviz && \
+    graphviz \
+    fonts-ipafont \
+    && \
     apt-get autoremove && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2022.6/plantuml-1.2022.6.jar \
-    -O ${PLANTUML_JAR_PATH} && \
-    java -jar ${PLANTUML_JAR_PATH} -version
+    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2022.7/plantuml-1.2022.7.jar \
+    -O ${PLANTUML_JAR_PATH}
 
 #Doxygen
 WORKDIR /usr/local/doxygen
@@ -38,7 +39,6 @@ RUN pip3 install --no-cache-dir \
     lmodern \
     ghostscript \
     latexmk \
-    fonts-ipafont \
     && \
     apt-get autoremove && \
     apt-get autoclean && \
