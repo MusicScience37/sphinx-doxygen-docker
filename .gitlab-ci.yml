@@ -10,71 +10,32 @@ container_scanning:
   rules:
     - if: $CI_COMMIT_BRANCH &&
         $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  needs:
-    - "update clang12"
-    - "update clang13"
-    - "update clang14"
 
-.test-base:
-  image: docker:latest
+test:
   stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH &&
+        $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+  parallel:
+    matrix:
+      - IMAGE_TAG:
+        - clang12
+        - clang13
+        - clang14
+        - clang15
+  image: docker:latest
   services:
     - docker:dind
   before_script:
     - apk add python3 py3-pip
     - pip3 install click
   script:
-    - apk add python3 py3-pip
-    - python3 ./tool.py test $IMAGE_DIR
-  except:
-    - main
+    - python3 ./tool.py test $IMAGE_TAG
 
-.update-base:
-  extends: .test-base
+update:
+  extends: test
+  rules:
+    - if: $CI_COMMIT_BRANCH &&
+        $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
-    - python3 ./tool.py update $IMAGE_DIR
-  except: []
-  only:
-    - main
-
-test clang12:
-  extends: .test-base
-  variables:
-    IMAGE_DIR: clang12
-
-update clang12:
-  extends: .update-base
-  variables:
-    IMAGE_DIR: clang12
-
-test clang13:
-  extends: .test-base
-  variables:
-    IMAGE_DIR: clang13
-
-update clang13:
-  extends: .update-base
-  variables:
-    IMAGE_DIR: clang13
-
-test clang14:
-  extends: .test-base
-  variables:
-    IMAGE_DIR: clang14
-
-update clang14:
-  extends: .update-base
-  variables:
-    IMAGE_DIR: clang14
-
-test clang15:
-  extends: .test-base
-  variables:
-    IMAGE_DIR: clang15
-  allow_failure: true
-
-update clang15:
-  extends: .update-base
-  variables:
-    IMAGE_DIR: clang15
-  allow_failure: true
+    - python3 ./tool.py update $IMAGE_TAG
