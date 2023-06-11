@@ -23,6 +23,7 @@ test:
         - clang13
         - clang14
         - clang15
+        - clang16
   image: docker:latest
   services:
     - docker:dind
