@@ -13,15 +13,15 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2022.12/plantuml-1.2022.12.jar \
+    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2023.12/plantuml-1.2023.12.jar \
     -O ${PLANTUML_JAR_PATH}
 
 #Doxygen
 WORKDIR /usr/local/doxygen
-RUN wget -nv https://www.doxygen.nl/files/doxygen-1.9.5.linux.bin.tar.gz && \
-    tar xf doxygen-1.9.5.linux.bin.tar.gz && \
-    rm doxygen-1.9.5.linux.bin.tar.gz
-ENV PATH=/usr/local/doxygen/doxygen-1.9.5/bin:$PATH
+RUN wget -nv https://www.doxygen.nl/files/doxygen-1.9.8.linux.bin.tar.gz && \
+    tar xf doxygen-1.9.8.linux.bin.tar.gz && \
+    rm doxygen-1.9.8.linux.bin.tar.gz
+ENV PATH=/usr/local/doxygen/doxygen-1.9.8/bin:$PATH
 
 # Sphinx
 RUN pip3 install --no-cache-dir \
