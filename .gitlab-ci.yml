@@ -19,11 +19,13 @@ test:
   parallel:
     matrix:
       - IMAGE_TAG:
-        - clang12
-        - clang13
-        - clang14
-        - clang15
-        - clang16
+          - clang12
+          - clang13
+          - clang14
+          - clang15
+          - clang16
+          - clang17
+          - clang18
   image: docker:latest
   services:
     - docker:dind

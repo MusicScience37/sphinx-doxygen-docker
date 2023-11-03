@@ -39,8 +39,16 @@ GITLAB_IMAGE_URL = (
 )
 DOCKER_HUB_IMAGE_URL = "musicscience37/sphinx-doxygen"
 
-IMAGE_TAGS = ["clang12", "clang13", "clang14", "clang15", "clang16"]
-LATEST_IMAGE_TAG = IMAGE_TAGS[2]
+IMAGE_TAGS = [
+    "clang12",
+    "clang13",
+    "clang14",
+    "clang15",
+    "clang16",
+    "clang17",
+    "clang18",
+]
+LATEST_IMAGE_TAG = "clang16"
 
 DOCKERFILE_DIR_NAME = "sphinx-docker"
 
@@ -113,7 +121,6 @@ def _test(image_full_name: str):
 
 
 def _tag_and_upload(image_full_name: str, another_image_full_name: str):
-
     _run_command(["docker", "tag", image_full_name, another_image_full_name])
     _run_command(["docker", "push", another_image_full_name])
 
