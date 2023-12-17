@@ -30,10 +30,10 @@ test:
   services:
     - docker:dind
   before_script:
-    - apk add python3 py3-pip
-    - pip3 install click
+    - apk add python3 py3-pip poetry
+    - poetry install --sync
   script:
-    - python3 ./tool.py test $IMAGE_TAG
+    - poetry run python3 ./tool.py test $IMAGE_TAG
 
 update:
   extends: test
@@ -41,4 +41,4 @@ update:
     - if: $CI_COMMIT_BRANCH &&
         $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
-    - python3 ./tool.py update $IMAGE_TAG
+    - poetry run python3 ./tool.py update $IMAGE_TAG
