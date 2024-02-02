@@ -40,7 +40,6 @@ GITLAB_IMAGE_URL = (
 DOCKER_HUB_IMAGE_URL = "musicscience37/sphinx-doxygen"
 
 IMAGE_TAGS = [
-    "clang12",
     "clang13",
     "clang14",
     "clang15",
