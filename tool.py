@@ -46,6 +46,8 @@ IMAGE_TAGS = [
     "clang16",
     "clang17",
     "clang18",
+    "gcc12",
+    "gcc13",
 ]
 LATEST_IMAGE_TAG = "clang16"
 
@@ -78,6 +80,14 @@ def _create_time_stamp() -> str:
     return datetime.datetime.now().strftime("%Y%m%d")
 
 
+def _select_base_image(tag_name: str) -> str:
+    if tag_name.startswith("clang"):
+        return f"musicscience37/clang-ci:{tag_name}"
+    if tag_name.startswith("gcc"):
+        return f"musicscience37/gcc-ci:{tag_name}"
+    raise ValueError("Invalid tag.")
+
+
 def _build(tag_name: str, image_full_name: str):
     """Build Docker image.
 
@@ -93,7 +103,7 @@ def _build(tag_name: str, image_full_name: str):
             "-t",
             image_full_name,
             "--build-arg",
-            f"BASE_TAG={tag_name}",
+            f"BASE_IMAGE={_select_base_image(tag_name)}",
             DOCKERFILE_DIR_NAME,
         ]
     )

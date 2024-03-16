@@ -1,5 +1,5 @@
-ARG BASE_TAG
-FROM musicscience37/clang-ci:${BASE_TAG}
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 # PlantUML
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"

@@ -34,6 +34,8 @@ test experimental:
     matrix:
       - IMAGE_TAG:
           - clang18
+          - gcc12
+          - gcc13
   allow_failure: true
 
 update:
@@ -50,4 +52,6 @@ update experimental:
     matrix:
       - IMAGE_TAG:
           - clang18
+          - gcc12
+          - gcc13
   allow_failure: true
