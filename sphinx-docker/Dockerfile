@@ -8,6 +8,7 @@ RUN apt-get update && \
     default-jre \
     graphviz \
     fonts-ipafont \
+    fonts-ipaexfont \
     && \
     apt-get autoremove && \
     apt-get autoclean && \
