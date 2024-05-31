@@ -14,11 +14,11 @@ test:
   parallel:
     matrix:
       - IMAGE_TAG:
-          - clang13
-          - clang14
           - clang15
           - clang16
           - clang17
+          - clang18
+          - gcc12
   image: docker:latest
   services:
     - docker:dind
@@ -33,8 +33,7 @@ test experimental:
   parallel:
     matrix:
       - IMAGE_TAG:
-          - clang18
-          - gcc12
+          - clang19
           - gcc13
   allow_failure: true
 
@@ -51,7 +50,6 @@ update experimental:
   parallel:
     matrix:
       - IMAGE_TAG:
-          - clang18
-          - gcc12
+          - clang19
           - gcc13
   allow_failure: true
