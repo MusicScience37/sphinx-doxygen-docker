@@ -19,10 +19,10 @@ RUN apt-get update && \
 
 #Doxygen
 WORKDIR /usr/local/doxygen
-RUN wget -nv https://www.doxygen.nl/files/doxygen-1.10.0.linux.bin.tar.gz && \
-    tar xf doxygen-1.10.0.linux.bin.tar.gz && \
-    rm doxygen-1.10.0.linux.bin.tar.gz
-ENV PATH=/usr/local/doxygen/doxygen-1.10.0/bin:$PATH
+RUN wget -nv https://www.doxygen.nl/files/doxygen-1.11.0.linux.bin.tar.gz && \
+    tar xf doxygen-1.11.0.linux.bin.tar.gz && \
+    rm doxygen-1.11.0.linux.bin.tar.gz
+ENV PATH=/usr/local/doxygen/doxygen-1.11.0/bin:$PATH
 
 # Sphinx
 RUN pip3 install --no-cache-dir \
@@ -32,11 +32,7 @@ RUN pip3 install --no-cache-dir \
     # Tex
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    texlive \
-    texlive-latex-recommended \
-    texlive-fonts-recommended \
-    texlive-font-utils \
-    texlive-latex-extra \
+    texlive-base \
     lmodern \
     ghostscript \
     latexmk \
