@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sphinx-doxygen-docker-test"
+version = "0.1.0"
+description = ""
+authors = ["Kenta Kabashima <kenta_program37@hotmail.co.jp>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+setuptools = "*"
+sphinx = "*"
+breathe = "*"
+sphinxcontrib-plantuml = "*"
+sphinx_rtd_theme = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
