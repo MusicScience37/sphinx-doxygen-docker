@@ -23,8 +23,7 @@
 # SOFTWARE.
 #
 
-"""Tool to create and test Docker image.
-"""
+"""Tool to create and test Docker image."""
 
 import datetime
 import os
@@ -40,15 +39,15 @@ GITLAB_IMAGE_URL = (
 DOCKER_HUB_IMAGE_URL = "musicscience37/sphinx-doxygen"
 
 IMAGE_TAGS = [
-    "clang15",
     "clang16",
     "clang17",
     "clang18",
     "clang19",
+    "clang20",
     "gcc12",
     "gcc13",
 ]
-LATEST_IMAGE_TAG = "clang17"
+LATEST_IMAGE_TAG = "clang19"
 
 DOCKERFILE_DIR_NAME = "sphinx-docker"
 
