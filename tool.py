@@ -39,15 +39,16 @@ GITLAB_IMAGE_URL = (
 DOCKER_HUB_IMAGE_URL = "musicscience37/sphinx-doxygen"
 
 IMAGE_TAGS = [
-    "clang16",
-    "clang17",
     "clang18",
     "clang19",
     "clang20",
+    "clang21",
+    "clang22",
     "gcc12",
     "gcc13",
+    "gcc14",
 ]
-LATEST_IMAGE_TAG = "clang19"
+LATEST_IMAGE_TAG = "clang20"
 
 DOCKERFILE_DIR_NAME = "sphinx-docker"
 
