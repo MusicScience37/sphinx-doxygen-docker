@@ -14,15 +14,15 @@ RUN apt-get update && \
     apt-get autoclean && \
     rm -r /var/lib/apt/lists/* && \
     mkdir -p /usr/local/plantuml && \
-    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2025.4/plantuml-1.2025.4.jar \
+    wget -nv https://github.com/plantuml/plantuml/releases/download/v1.2025.10/plantuml-1.2025.10.jar \
     -O ${PLANTUML_JAR_PATH}
 
 #Doxygen
 WORKDIR /usr/local/doxygen
-RUN wget -nv https://github.com/doxygen/doxygen/releases/download/Release_1_14_0/doxygen-1.14.0.linux.bin.tar.gz && \
-    tar xf doxygen-1.14.0.linux.bin.tar.gz && \
-    rm doxygen-1.14.0.linux.bin.tar.gz
-ENV PATH=/usr/local/doxygen/doxygen-1.14.0/bin:$PATH
+RUN wget -nv https://github.com/doxygen/doxygen/releases/download/Release_1_15_0/doxygen-1.15.0.linux.bin.tar.gz && \
+    tar xf doxygen-1.15.0.linux.bin.tar.gz && \
+    rm doxygen-1.15.0.linux.bin.tar.gz
+ENV PATH=/usr/local/doxygen/doxygen-1.15.0/bin:$PATH
 
 # Tex
 RUN apt-get update && \
