@@ -47,6 +47,8 @@ IMAGE_TAGS = [
     "gcc12",
     "gcc13",
     "gcc14",
+    "gcc15",
+    "gcc16",
 ]
 LATEST_IMAGE_TAG = "clang20"
 
